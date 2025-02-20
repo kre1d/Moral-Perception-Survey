@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moral Perception Survey</title>
+    <link rel="stylesheet" href="try.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Serif+Text:ital@0;1&family=Lilita+One&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+	
+	<script>
+
+			function updateValue(id, value) {
+				document.getElementById(id).innerText = value;
+			}
+
+
+			function nextQuestion(currentQuestion, nextQuestion) {
+				document.getElementById(currentQuestion).style.display = "none"; 
+				document.getElementById(nextQuestion).style.display = "block";  
+			}
+
+
+			function hideHeaderFooter() {
+				document.querySelector('.marquee-container').style.display = 'none'; 
+				document.querySelector('.footer').style.display = 'none'; 
+			}
+
+			function showHeaderFooter() {
+				document.querySelector('.marquee-container').style.display = 'block'; 
+				document.querySelector('.footer').style.display = 'block'; 
+			}
+
+
+			document.addEventListener("DOMContentLoaded", function () {
+				
+				const nextButtons = document.querySelectorAll('.next-button');
+				
+				nextButtons.forEach(button => {
+					button.addEventListener('click', function () {
+						
+						const currentQuestion = button.getAttribute('data-current');
+						const nextQuestion = button.getAttribute('data-next');
+						
+						
+						hideHeaderFooter();
+						
+						
+						nextQuestion(currentQuestion, nextQuestion);
+
+						
+						if (nextQuestion === 'thank-you') {
+							showHeaderFooter();
+						}
+					});
+				});
+			});
+
+    </script>
+</head>
+
+<body>
+    <div id="blurred-background"></div>
+	
+	
+	<div class="marquee-container top">
+		<div class="marquee">DE LA SALLE UNIVERSITY</div>
+	</div>
+
+   
+	<div id="info-page" style="text-align: center; padding-top: 80px;">
+		<h1>Moral Perception Survey</h1>
+		<img src="dlsu.png" alt="DLSU Logo" style="width: 130px; margin-top: 10px; margin-bottom: 20px;">
+		<p>Welcome to the Moral Perception Survey. In this survey, you will be asked to rate various scenarios based on moral wrongness and punishment severity. Please answer honestly.</p>
+		<button id="next-btn" class="next-button" onclick="nextQuestion('info-page', 'survey-form')">Next</button>
+	</div>
+	
+	
+	<div class="footer">
+		<div class="footer-row">
+			<p><strong>Contact: Leanne Paul Corocotchia</strong></p>
+			<p>leanne.corocotchia@dlsu.edu.ph</p>
+		</div>
+		<div class="footer-row">
+			<p>09563869922</p>
+			<p>2401 Taft Avenue, Malate, Manila, Philippines</p>
+		</div>
+	</div>
+
+
+    
+    <form id="survey-form" style="display: none;">
+        <div id="page-1">
+            <label for="age">How old are you?</label>
+            <input type="number" id="age" name="age" min="18" max="120"><br><br>
+
+            <label>What is your gender?</label><br>
+            <input type="radio" name="gender" value="Female"> Female<br>
+            <input type="radio" name="gender" value="Male"> Male<br>
+            <input type="text" name="gender_other" placeholder="Prefer to self-describe"><br><br>
+
+            <p>For each scenario, rate moral wrongness and punishment severity on a scale of 0-10.</p>
+            <button type="button" class="next-button" onclick="nextQuestion('page-1', 'scenario-1')">Next</button>
+        </div>
+
+        
+        <div id="scenario-1" style="display: none;">
+            <h3>Scenario 1</h3>
+            <p>A chef accidentally drops and shatters a bottle of olive oil on the kitchen floor. He quickly wipes down the counter but does not properly clean the floor, leaving a thin layer of oil. Moments later, another chef walks into the area, slips, and injures their back. How morally wrong was the chef's action?</p><br><br>
+            <label>How morally wrong was the chef? <br><br> <span id="moral_wrong_1_value">5</span></label>
+            <input type="range" name="WON_1" min="0" max="10" value="5" oninput="updateValue('moral_wrong_1_value', this.value)"><br>
+            <label>How severe should the punishment be? <br><br> <span id="punishment_1_value">5</span></label>
+            <input type="range" name="WN_1" min="0" max="10" value="5" oninput="updateValue('punishment_1_value', this.value)"><br><br>
+            <label>To what extent do you think the chef could be accused of negligence? <br><br> <span id="negligence_1_value">5</span></label><br>
+            <input type="range" name="ASC_1" min="0" max="10" value="5" oninput="updateValue('negligence_1_value', this.value)"><br><br>
+            <button type="button" class="next-button" onclick="nextQuestion('scenario-1', 'scenario-2')">Next</button>
+        </div>
+
+        
+        <div id="scenario-2" style="display: none;">
+            <h3>Scenario 2</h3>
+            <p>A contractor inspects a roofing project and notices that a previous contractor installed it incorrectly. He and his team applies a sealant to cover the flaws instead of replacing the roof. After a heavy rainstorm, water continues to seep through, causing damage inside the building. How morally wrong was the contractor's action?</p><br><br>
+            <label>How morally wrong was the contractor? <br><br> <span id="moral_wrong_2_value">5</span></label>
+            <input type="range" name="WON_2" min="0" max="10" value="5" oninput="updateValue('moral_wrong_2_value', this.value)"><br>
+            <label>How severe should the punishment be? <br><br> <span id="punishment_2_value">5</span></label>
+            <input type="range" name="WN_2" min="0" max="10" value="5" oninput="updateValue('punishment_2_value', this.value)"><br><br>
+            <label>To what extent do you think the contractor could be accused of negligence? <br><br> <span id="negligence_2_value">5</span></label><br>
+            <input type="range" name="ASC_2" min="0" max="10" value="5" oninput="updateValue('negligence_2_value', this.value)"><br><br>
+            <button type="button" class="next-button" onclick="nextQuestion('scenario-2', 'scenario-3')">Next</button>
+        </div>
+
+       
+        <div id="scenario-3" style="display: none;">
+            <h3>Scenario 3</h3>
+            <p>During a lab experiment, a chemical container begins leaking, releasing fumes into the air. The teacher immediately seals the container and evacuates the students. However, due to inadequate ventilation in the room, residual fumes continue to circulate. Over time, the fumes spread throughout the classroom, causing students to feel dizzy and nauseated. How morally wrong was the teacher's action?</p><br><br>
+            <label>How morally wrong was the teacher? <br><br> <span id="moral_wrong_3_value">5</span></label>
+            <input type="range" name="moral_wrong_3" min="0" max="10" value="5" oninput="updateValue('moral_wrong_3_value', this.value)"><br>
+            <label>How severe should the punishment be? <br><br> <span id="punishment_3_value">5</span></label>
+            <input type="range" name="punishment_3" min="0" max="10" value="5" oninput="updateValue('punishment_3_value', this.value)"><br><br>
+            <label>To what extent do you think the teacher could be accused of negligence? <br><br> <span id="negligence_3_value">5</span></label><br>
+            <input type="range" name="negligence_3" min="0" max="10" value="5" oninput="updateValue('negligence_3_value', this.value)"><br><br>
+            <button type="button" class="next-button" onclick="nextQuestion('scenario-3', 'scenario-4')">Next</button>
+        </div>
+
+        
+        <div id="scenario-4" style="display: none;">
+            <h3>Scenario 4</h3>
+            <p>An employee was working on a construction site when a large piece of equipment suddenly became unstable and fell on him, causing serious injuries. The accident occurred due to the supervisor’s failure to ensure the equipment was properly secured. How morally wrong was the supervisor's action?</p><br><br>
+            <label>How morally wrong was the supervisor? <br><br> <span id="moral_wrong_4_value">5</span></label>
+            <input type="range" name="moral_wrong_4" min="0" max="10" value="5" oninput="updateValue('moral_wrong_4_value', this.value)"><br>
+            <label>How severe should the punishment be? <br><br> <span id="punishment_4_value">5</span></label>
+            <input type="range" name="punishment_4" min="0" max="10" value="5" oninput="updateValue('punishment_4_value', this.value)"><br><br>
+            <label>To what extent do you think the supervisor could be accused of negligence? <br><br> <span id="negligence_4_value">5</span></label><br>
+            <input type="range" name="negligence_4" min="0" max="10" value="5" oninput="updateValue('negligence_4_value', this.value)"><br><br>
+            <label>What caused the accident?</label><br>
+            <input type="radio" name="accident_cause_4" value="Mechanical failure"> Mechanical failure<br>
+            <input type="radio" name="accident_cause_4" value="Worker's mistake"> Worker's mistake<br>
+            <input type="radio" name="accident_cause_4" value="Supervisor's failure to secure the equipment"> Supervisor's failure to secure the equipment<br><br>
+			
+            <button type="button" class="next-button" onclick="nextQuestion('scenario-4', 'scenario-5')">Next</button>
+        </div>
+
+       
+		<div id="scenario-5" style="display: none;">
+			<h3>Scenario 5</h3>
+			<p>A contractor is hired to remodel a couple’s kitchen. Despite reviewing the plumbing layout, they accidentally damage a hidden pipe not shown in the plans, causing a leak that floods the kitchen, damaging the flooring and walls. The couple faces costly repairs, delays, and major disruption to their home. An internal investigation was launched to determine whether a planning error, construction mistake, or faulty blueprints contributed to the incident. How morally wrong was the contractor's action?</p><br><br>
+			<label>How morally wrong was the contractor? <br><br> <span id="moral_wrong_5_value">5</span></label>
+			<input type="range" name="WON_5" min="0" max="10" value="5" oninput="updateValue('moral_wrong_5_value', this.value)"><br>
+			<label>How severe should the punishment be? <br><br> <span id="punishment_5_value">5</span></label>
+			<input type="range" name="WN_5" min="0" max="10" value="5" oninput="updateValue('punishment_5_value', this.value)"><br><br>
+			<label>To what extent do you think the contractor could be accused of negligence? <br><br> <span id="negligence_5_value">5</span></label><br>
+			<input type="range" name="ASC_5" min="0" max="10" value="5" oninput="updateValue('negligence_5_value', this.value)"><br><br>
+			<button type="button" class="next-button" onclick="nextQuestion('scenario-5', 'scenario-6')">Next</button>
+		</div>
+
+		
+		<div id="scenario-6" style="display: none;">
+			<h3>Scenario 6</h3>
+			<p>A pedestrian is crossing a pedestrian lane at an intersection when they are hit by a car. The driver was texting while driving and did not notice the pedestrian. Despite the pedestrian being in a designated crossing area, the incident resulted in a collision. How morally wrong was the driver's action?</p><br><br>
+			<label>How morally wrong was the driver? <br><br> <span id="moral_wrong_6_value">5</span></label>
+			<input type="range" name="WON_11" min="0" max="10" value="5" oninput="updateValue('moral_wrong_6_value', this.value)"><br>
+			<label>How severe should the punishment be? <br><br> <span id="punishment_6_value">5</span></label>
+			<input type="range" name="WN_12" min="0" max="10" value="5" oninput="updateValue('punishment_6_value', this.value)"><br><br>
+			<label>To what extent do you think the driver could be accused of negligence? <br><br> <span id="negligence_6_value">5</span></label><br>
+			<input type="range" name="ASC_6" min="0" max="10" value="5" oninput="updateValue('negligence_6_value', this.value)"><br><br>
+			<button type="button" class="next-button" onclick="nextQuestion('scenario-6', 'scenario-7')">Next</button>
+		</div>
+
+		
+		<div id="scenario-7" style="display: none;">
+			<h3>Scenario 7</h3>
+			<p>A patient was rushed to the emergency room for chest pains. After a clean MRI and after being given medication for the pain, he was free to go home. A few hours later, the chest pain started again. Upon a second look, the doctor found a growing mass in his chest that the MRI did not capture the first time. Due to this, the mass was detected too late to cure. How morally wrong was the doctor's action?</p><br><br>
+			<label>How morally wrong was the doctor? <br><br> <span id="moral_wrong_7_value">5</span></label>
+			<input type="range" name="WON_13" min="0" max="10" value="5" oninput="updateValue('moral_wrong_7_value', this.value)"><br>
+			<label>How severe should the punishment be? <br><br> <span id="punishment_7_value">5</span></label>
+			<input type="range" name="WN_14" min="0" max="10" value="5" oninput="updateValue('punishment_7_value', this.value)"><br><br>
+			<label>To what extent do you think the doctor could be accused of negligence? <br><br> <span id="negligence_7_value">5</span></label><br>
+			<input type="range" name="ASC_7" min="0" max="10" value="5" oninput="updateValue('negligence_7_value', this.value)"><br><br>
+			<button type="button" class="next-button" onclick="nextQuestion('scenario-7', 'scenario-8')">Next</button>
+		</div>
+
+		
+		<div id="scenario-8" style="display: none;">
+			<h3>Scenario 8</h3>
+			<p>A dog owner knows that his dog has a tendency to bite people he was not familiar with. Despite this, he continued to leave his dog unguided and has not taken him to get rabies shots. After bringing guests over, he let his dog roam free. Unfortunately, the dog targeted a guest and needed immediate emergency medical treatment. How morally wrong was the dog owner's action?</p><br><br>
+			<label>How morally wrong was the dog owner? <br><br> <span id="moral_wrong_8_value">5</span></label>
+			<input type="range" name="WON_15" min="0" max="10" value="5" oninput="updateValue('moral_wrong_8_value', this.value)"><br>
+			<label>How severe should the punishment be? <br><br> <span id="punishment_8_value">5</span></label>
+			<input type="range" name="WN_16" min="0" max="10" value="5" oninput="updateValue('punishment_8_value', this.value)"><br><br>
+			<label>To what extent do you think the dog owner could be accused of negligence? <br><br> <span id="negligence_8_value">5</span></label><br>
+			<input type="range" name="ASC_8" min="0" max="10" value="5" oninput="updateValue('negligence_8_value', this.value)"><br><br>
+			<label>What was the main factor that contributed to the attack?</label><br>
+			<input type="radio" name="ATC_2" value="The dog's tendency to bite unfamiliar people"> The dog's tendency to bite unfamiliar people<br>
+			<input type="radio" name="ATC_2" value="The guest provoking the dog"> The guest provoking the dog<br>
+			<input type="radio" name="ATC_2" value="The dog's lack of food"> The dog's lack of food<br><br>
+			<button type="button" class="next-button" onclick="nextQuestion('scenario-8', 'scenario-9')">Next</button>
+		</div>
+
+		
+		<div id="scenario-9" style="display: none;">
+			<h3>Scenario 9</h3>
+			<p>Maria watched her daughter, Lily, shiver under a thick blanket. The fever had lasted days, and Lily whimpered, "Mom, please take me to the hospital." Maria immediately grabbed her keys. "Of course, sweetheart." She had given Lily all her prescribed medicines, never missing a dose. At the hospital, doctors worked tirelessly, but the infection had spread too far. "We did everything we could," a doctor murmured. Maria clutched Lily’s small, lifeless hand, tears streaming down her face. She had done everything right—yet it hadn’t been enough. The room felt unbearably empty as Maria whispered, "I’m so sorry, my love." How morally wrong was Maria's action?</p><br><br>
+			<label>How morally wrong was Maria? <br><br> <span id="moral_wrong_9_value">5</span></label>
+			<input type="range" name="WON_17" min="0" max="10" value="5" oninput="updateValue('moral_wrong_9_value', this.value)"><br>
+			<label>How severe should the punishment be? <br><br> <span id="punishment_9_value">5</span></label>
+			<input type="range" name="WN_18" min="0" max="10" value="5" oninput="updateValue('punishment_9_value', this.value)"><br><br>
+			<label>To what extent do you think Maria could be accused of negligence? <br><br> <span id="negligence_9_value">5</span></label><br>
+			<input type="range" name="ASC_9" min="0" max="10" value="5" oninput="updateValue('negligence_9_value', this.value)"><br><br>
+			<button type="button" class="next-button" onclick="nextQuestion('scenario-9', 'scenario-10')">Next</button>
+		</div>
+
+		
+		<div id="scenario-10" style="display: none;">
+			<h3>Scenario 10</h3>
+			<p>Jake had always been careful, getting tested regularly and staying honest with Anna. When Anna asked if he’d been tested, he waved her off. "I’m fine, don’t worry." Trusting him, she believed it. Weeks later, Anna fell ill—fever, pain, something wasn’t right. The doctor’s words hit like a punch: "You have an STD. It’s advanced." Shocked, she confronted Jake, but he shrugged it off. "It’s not a big deal." His careless, reckless behavior changed everything. How morally wrong was Jake's action?</p> <br><br>
+			<label>How morally wrong was Jake? <br><br> <span id="moral_wrong_10_value">5</span></label>
+			<input type="range" name="WON_19" min="0" max="10" value="5" oninput="updateValue('moral_wrong_10_value', this.value)"><br>
+			<label>How severe should the punishment be? <br><br> <span id="punishment_10_value">5</span></label>
+			<input type="range" name="WN_20" min="0" max="10" value="5" oninput="updateValue('punishment_10_value', this.value)"><br><br>
+			<label>To what extent do you think Jake could be accused of negligence? <br><br> <span id="negligence_10_value">5</span></label><br>
+			<input type="range" name="ASC_10" min="0" max="10" value="5" oninput="updateValue('negligence_10_value', this.value)"><br><br>
+			<button type="button" class="next-button" onclick="nextQuestion('scenario-10', 'thank-you')">Next</button>
+		</div>
+
+
+		
+		<div id="thank-you" style="display: none;">
+			<h3>Thank You for Participating!</h3>
+			<p>Your responses will help us in our research.</p>
+		</div>
+    </form>
+</body>
+</html>
